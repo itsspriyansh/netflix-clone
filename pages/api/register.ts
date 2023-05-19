@@ -24,8 +24,8 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
                 emailVerified : new Date()
             }
         })
-
         return res.status(200).json(user)
+        
     } catch (error) {
         console.log(error)
         res.status(400).end()
