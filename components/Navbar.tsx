@@ -3,6 +3,7 @@ import NavbarItem from './NavbarItem'
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs"
 import MobileMenu from './MobileMenu'
 import AccountMenu from './AccountMenu'
+import useCurrentUser from '@/hooks/useCurrentUser'
 
 const Navbar = () => {
 
@@ -12,6 +13,7 @@ const Navbar = () => {
     const [showAccountMenu, setShowAccountMenu] = useState(false)
     const [showBackground, setShowBackground] = useState(false)
 
+    const { data : user } = useCurrentUser()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,10 +23,11 @@ const Navbar = () => {
                 setShowBackground(false)
             }
         }
+
         window.addEventListener("scroll", handleScroll)
 
         return () => {
-            window.removeEventListener("scroll", handleScroll)
+          window.removeEventListener("scroll", handleScroll)
         }
     }, [])
 
@@ -63,7 +66,7 @@ const Navbar = () => {
           </div>
           <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
             <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full overflow-hidden">
-              <img src="/images/user.jpg" alt="" />
+              <img src={user?.image} alt="" />
             </div>
             <BsChevronDown className={`text-white transition ${showAccountMenu ? "rotate-180" : "rotate-0"}`} />
             <AccountMenu visible={showAccountMenu} />
