@@ -15,6 +15,7 @@ const Navbar = () => {
 
     const { data : user } = useCurrentUser()
 
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > SCROLL_OFFSET) {
@@ -42,7 +43,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed z-40">
-      <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}`}>
+      <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? 'bg-black bg-opacity-90' : ''}`}>
         <img src="/images/logo.png" className="h-10 lg:h-14" alt="Logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
             <NavbarItem label={"Home"} />
