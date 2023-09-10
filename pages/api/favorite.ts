@@ -1,3 +1,4 @@
+import useCurrentUser from "@/hooks/useCurrentUser";
 import serverAuth from "@/lib/serverAuth";
 import { without } from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -5,10 +6,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 const favorite = async (req : NextApiRequest, res : NextApiResponse) => {
     try {
         if (req.method === "POST") {
-            const { currentUser } = await serverAuth(req)
+            const { currentUser } = await serverAuth(req, res)
             const { movieId } = req.body
             
-            const existingMovie = prismadb.movie.findUnique({
+            const existingMovie = await prismadb.movie.findUnique({
                 where : {
                     id : movieId
                 }
@@ -33,7 +34,7 @@ const favorite = async (req : NextApiRequest, res : NextApiResponse) => {
 
 
         if (req.method === "DELETE") {
-            const { currentUser } = await serverAuth(req)
+            const { currentUser } = await serverAuth(req, res)
             const { movieId } = req.body
 
             const existingMovie = await prismadb.movie.findUnique({
@@ -64,4 +65,4 @@ const favorite = async (req : NextApiRequest, res : NextApiResponse) => {
     }
 }
 
-export default favorite
+export default favorite 

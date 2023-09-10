@@ -7,7 +7,7 @@ export default async function movies (req : NextApiRequest, res : NextApiRespons
         return res.status(405).end()
     }
     try {
-        await serverAuth(req)
+        await serverAuth(req, res)
 
         const movieList = await prismadb.movie.findMany()
         return res.status(200).json(movieList) 

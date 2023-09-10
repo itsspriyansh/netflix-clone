@@ -1,6 +1,7 @@
 import React from 'react'
 import { BsChevronDown } from 'react-icons/bs';
 import { AiFillPlayCircle } from 'react-icons/ai';
+import FavoriteButton from './FavoriteButton';
 
 interface MovieCardProps {
     data : Record<string, any>
@@ -64,7 +65,7 @@ const MovieCard:React.FC<MovieCardProps> = ({ data }) => {
             <div className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300">
               <AiFillPlayCircle size={30} className="text-red-600 w-4 lg:w-6" />
             </div>
-            {/* <FavoriteButton movieId={data.id} /> */}
+            <FavoriteButton movieId={data?.movieId} />
             <div className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300">
               <BsChevronDown className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>

@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 const favorites = async (req : NextApiRequest, res : NextApiResponse) => {
     if (req.method !== "GET") {
         try {
-            const { currentUser } = await serverAuth(req)
+            const { currentUser } = await serverAuth(req, res)
             const favorites = await prismadb.movie.findMany({
                 where : {
                     id : {
